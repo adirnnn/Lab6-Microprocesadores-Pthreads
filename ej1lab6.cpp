@@ -17,35 +17,35 @@ void* calculateFibonacci(void* params) {
         if (next > data->limit) {
             break;
         }
-        data->fibonacciNumbers.push_back(next);  // agrega el numero al vector.
-        data->sum += next;                       // suma el numero al total.
+        data->fibonacciNumbers.push_back(next);  //agrega el numero al vector.
+        data->sum += next;                       //suma el numero al total.
         a = b;
         b = next;
-        next = a + b;  // calcula el siguiente numero
+        next = a + b;  //calcula el siguiente numero
     }
 
-    pthread_exit(NULL);  // termina el hilo.
+    pthread_exit(NULL);  //termina el hilo.
     return NULL;
 }
 
 int main() {
-    int limit;  // variable donde se almacena el límite ingresado por el usuario.
+    int limit;  //variable donde se almacena el límite ingresado por el usuario.
     std::cout << "Ingrese un numero entre 0 y 100: ";
     std::cin >> limit;
 
-    // verificacion del rango
+    //verificacion del rango
     if (limit < 0 || limit > 100) {
         std::cout << "El numero debe estar entre 0 y 100." << std::endl;
         return 1;
     }
 
-    // inicializa la estructura de datos.
+    //inicializa la estructura de datos.
     ThreadData data;
     data.limit = limit;
     data.sum = 0;
 
     pthread_t thread; 
-    // crea un hilo para ejecutar la función calculateFibonacci.
+    //crea un hilo para ejecutar la función calculateFibonacci.
     int rc = pthread_create(&thread, NULL, calculateFibonacci, &data);
     if (rc) {
         std::cout << "Error: No se pudo crear el hilo, codigo de error: " << rc << std::endl;
