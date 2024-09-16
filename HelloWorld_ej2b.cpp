@@ -33,7 +33,7 @@ void *PrintHello(void *paramID) {
 	// *tid desreferencia el puntero = accede al valor del entero que está almacenado 
 	// en la dirección de memoria a la que tid apunta. 
 	// *tid obtiene el valor del entero al que tid está apuntando.
-	printf("Hello world thread No.%d!\n" + *id);
+	printf("Hello world thread No.%d!\n", *id);
 	pthread_exit(NULL);
 	return NULL; 
 }
